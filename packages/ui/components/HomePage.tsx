@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import SaveButton from "./SaveButton";
+import InputBox from "./InputBox";
 
-interface Props {
+interface Props { 
   dayNumber: number;
 }
 const Home = ({ dayNumber }: Props) => {
+  
   return (
     <>
       <div
@@ -16,14 +19,9 @@ const Home = ({ dayNumber }: Props) => {
               <div className="flex">
                 <div className="flex items-center space-x-4 w-5/6">
                   <input className="w-5 h-5" type="checkbox" />
-                  <input
-                    className="bg-gray-100 rounded-lg h-10 w-5/6 p-3"
-                    type="text"
-                    placeholder={`Day ${dayNumber}`}
-                  />
+                  <InputBox dayNumber={dayNumber}/>
                 </div>
                 <div className="flex justify-end space-x-4 items-center ml-28">
-                  <button className="text-green-800">SAVE</button>
                   <button className="text-blue-600">EDIT</button>
                 </div>
               </div>

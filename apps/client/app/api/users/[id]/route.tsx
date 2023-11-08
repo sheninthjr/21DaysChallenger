@@ -6,6 +6,7 @@ interface UserProps {
 }
 
 interface Props {
+    dayNumber:number
     content:string;
     done:boolean;
     userId:number;
@@ -17,6 +18,7 @@ export async function POST(req:NextRequest,{ params }: { params: { id: string } 
     const userId = parseInt(params.id)
     const task:Props = await prisma.task.create({
         data:{
+            dayNumber:body.dayNumber,
             content:body.content,
             done : body.done || false,
             userId: userId
