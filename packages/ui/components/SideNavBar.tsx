@@ -4,10 +4,7 @@ const SideNavBar = () => {
   return (
     <>
       <div className=" flex w-1/6 h-[calc(100vh-2rem)] bg-gray-100 fixed bottom-0">
-        <div className="flex flex-col justify-start items-start ml-20 space-y-20 pt-20 text-black text-lg">
-          <div className="text-gray-700">
-            <Link href="/">Dashboard</Link>
-          </div>
+        <div className="flex flex-col justify-start items-center ml-20 space-y-20 pt-20 text-black text-lg">
           <div className="flex justify-center items-start space-x-2 ">
             <svg
               className="w-6 h-6"
@@ -21,6 +18,9 @@ const SideNavBar = () => {
               <path d="M42,26a2,2,0,0,0-2,2V43H8V28a2,2,0,0,0-4,0V45a2,2,0,0,0,2,2H42a2,2,0,0,0,2-2V28A2,2,0,0,0,42,26Z" />
             </svg>
             <Link href="/home">Home</Link>
+          </div>
+          <div className="text-gray-700">
+            <Link href="/">Dashboard</Link>
           </div>
           <div className="flex justify-center items-start space-x-2">
             <svg
