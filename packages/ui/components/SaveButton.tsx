@@ -4,6 +4,7 @@ interface SaveButtonProps {
   content: string;
   dayNumber: number;
   isDataSaved: boolean;
+  isDataChecked: boolean;
   onButtonClick: () => void;
 }
 
@@ -11,6 +12,7 @@ const SaveButton = ({
   dayNumber,
   content,
   isDataSaved,
+  isDataChecked,
   onButtonClick,
 }: SaveButtonProps) => {
   const handleClick = async () => {
@@ -24,6 +26,7 @@ const SaveButton = ({
         body: JSON.stringify({
           dayNumber: dayNumber,
           content: content,
+          done: isDataChecked,
         }),
       });
       if (!response.ok) {
