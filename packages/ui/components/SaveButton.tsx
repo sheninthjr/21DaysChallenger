@@ -8,7 +8,7 @@ interface SaveButtonProps {
 
 const SaveButton = ({ dayNumber, content }: SaveButtonProps) => {
   const handleClick = async () => {
-    const response = await fetch(`/api/users/1`, {
+    const response = await fetch(`/api/users/4`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({dayNumber,content}),

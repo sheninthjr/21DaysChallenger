@@ -1,44 +1,40 @@
-import React, { useState } from "react";
-import SaveButton from "./SaveButton";
-import InputBox from "./InputBox";
 
-interface Props { 
-  dayNumber: number;
-}
-const Home = ({ dayNumber }: Props) => {
-  
+import InputBox from "./InputBox";
+import { GetServerSideProps } from 'next';
+
+const Home = ({ content} : {content:string}) => {
+  const dayNumbers = Array.from({ length: 21 }, (_, index) => index + 1);
+  console.log(content)
   return (
     <>
-      <div
-        className="flex justify-start items-center text-black"
-        style={{ paddingTop: dayNumber === 1 ? "70px" : "0" }}
-      >
-        <div className="w-full pl-80 pr-5">
-          <div className="flex flex-col justify-between border-2 border-gray-400 p-4 m-4">
-            <div className="space-y-4">
-              <div className="flex">
-                <div className="flex items-center space-x-4 w-5/6">
-                  <input className="w-5 h-5" type="checkbox" />
-                  <InputBox dayNumber={dayNumber}/>
-                </div>
-                <div className="flex justify-end space-x-4 items-center ml-28">
-                  <button className="text-blue-600">EDIT</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+<div>
+      {dayNumbers.map((dayNumber) => (
+        <InputBox key={dayNumber} dayNumber={dayNumber} context={content} />
+      ))}
+    </div>    </>
   );
 };
 
-const App = () => {
-  const numberOfDays = 21;
-  const daysComponents = Array.from({ length: numberOfDays }, (v, i) => (
-    <Home key={i} dayNumber={i + 1} />
-  ));
-  return <div>{daysComponents}</div>;
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const userId = 4; 
+  const response = await fetch(`/api/users/${userId}`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  console.log(response)
+  let content = '';
+  if (response.ok) {
+    const data = await response.json();
+    content = data.content;
+    console.log('API Data:', data); 
+    console.log('Content:', content); 
+  } else {
+    console.error('Failed to fetch data');
+  }
+
+  return {
+    props: { content },
+  };
 };
 
-export default App;
+export default Home;

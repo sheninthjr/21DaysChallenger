@@ -17,10 +17,10 @@ const SideNavBar = () => {
               <path d="M46.34,20.52l-21-19a2,2,0,0,0-2.68,0l-21,19a2,2,0,1,0,2.68,3L24,5.7,43.66,23.48a2,2,0,0,0,2.68-3Z" />
               <path d="M42,26a2,2,0,0,0-2,2V43H8V28a2,2,0,0,0-4,0V45a2,2,0,0,0,2,2H42a2,2,0,0,0,2-2V28A2,2,0,0,0,42,26Z" />
             </svg>
-            <Link href="/home">Home</Link>
+            <Link href="/">Home</Link>
           </div>
-          <div className="text-gray-700">
-            <Link href="/">Dashboard</Link>
+          <div className="">
+            <Link href="/Dashboard">Dashboard</Link>
           </div>
           <div className="flex justify-center items-start space-x-2">
             <svg
