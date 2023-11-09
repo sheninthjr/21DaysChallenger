@@ -20,7 +20,7 @@ const SideNavBar = () => {
             <Link href="/">Home</Link>
           </div>
           <div className="">
-            <Link href="/Dashboard">Dashboard</Link>
+            <Link href="/dashboard">Dashboard</Link>
           </div>
           <div className="flex justify-center items-start space-x-2">
             <svg
