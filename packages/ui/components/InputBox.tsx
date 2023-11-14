@@ -1,5 +1,6 @@
 "use client";
-
+import { useRecoilValue } from "recoil";
+import { userState } from '../../../apps/client/app/recoilContextProvider'
 import { useEffect, useState } from "react";
 import SaveButton from "./SaveButton";
 
@@ -12,6 +13,8 @@ const InputBox = ({ dayNumber }: Props) => {
   const [isEditing, setIsEditing] = useState(false);
   const [isDataSaved, setIsDataSaved] = useState(false);
   const [isDataChecked, setIsDataChecked] = useState(false);
+  const emailData = useRecoilValue(userState)
+  console.log(emailData)
 
   useEffect(() => {
     const fetchData = async () => {

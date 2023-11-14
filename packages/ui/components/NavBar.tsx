@@ -1,9 +1,14 @@
 "use client";
 import Link from "next/link";
+import { useSetRecoilState } from "recoil";
+import { userState } from '../../../apps/client/app/recoilContextProvider'
 import { signIn, signOut, useSession } from "next-auth/react";
+
 
 function AuthButton() {
   const { data: session } = useSession();
+  const user = useSetRecoilState(userState)
+  user({email:session?.user?.email,name:session?.user?.name})
   if (session) {
     return (
       <>
