@@ -16,7 +16,7 @@ const InputBox = ({ dayNumber }: Props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/users/4`, {
+        const response = await fetch(`/api/users/2`, {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         });
@@ -52,7 +52,7 @@ const InputBox = ({ dayNumber }: Props) => {
   };
   const handleCheckboxChange = async () => {
     try {
-      const response = await fetch(`/api/users/4`, {
+      const response = await fetch(`/api/users/2`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

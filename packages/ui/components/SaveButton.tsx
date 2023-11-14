@@ -18,7 +18,7 @@ const SaveButton = ({
   const handleClick = async () => {
     const method = isDataSaved ? "PUT" : "POST";
     try {
-      const response = await fetch(`/api/users/4`, {
+      const response = await fetch(`/api/users/2`, {
         method: method,
         headers: {
           "Content-Type": "application/json",
