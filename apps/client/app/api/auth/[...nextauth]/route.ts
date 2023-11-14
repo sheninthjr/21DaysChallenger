@@ -10,8 +10,8 @@ export const authOptions = {
       clientSecret: process.env.NEXT_GOOGLE_CLIENT_SECRET ?? "",
     }),
     GitHubProvider({
-        clientId: process.env.GITHUB_ID ?? "",
-        clientSecret: process.env.GITHUB_SECRET ?? ""
+        clientId: process.env.NEXT_GITHUB_CLIENT_ID ?? "",
+        clientSecret: process.env.NEXT_GITHUB_CLIENT_SECRET ?? ""
     }),
     CredentialsProvider({
       name: "Credentials",
@@ -36,7 +36,6 @@ export const authOptions = {
         const user = await response.json();
         if (response.ok && user) {
           return user;
-          
         }
         return null;
       },

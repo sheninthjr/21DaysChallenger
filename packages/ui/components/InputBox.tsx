@@ -20,7 +20,6 @@ const InputBox = ({ dayNumber }: Props) => {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         });
-
         if (response.ok) {
           const data = await response.json();
           const sortedData = data.sort(

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from '@prisma/client'
 
 interface Props {
+    id: any;
     email:string;
     name:string;
     password:string;
@@ -19,7 +20,8 @@ export async function POST(req:NextRequest){
             password:body.password
         }
     })
-    return NextResponse.json(user,{status:200})
+    const userId = user.id;
+    return NextResponse.json({ id: userId },{status:200})
 }
 
 export async function GET(req:NextRequest){
@@ -32,5 +34,7 @@ export async function GET(req:NextRequest){
         id: true,
       },
     });
-    return NextResponse.json(user,{status:200})
+    console.log(user)
+    const userId = user?.id;
+    return NextResponse.json({ id: userId },{status:200})
 }
