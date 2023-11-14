@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client'
 
 interface Props {
     email:string;
-    username:string;
+    name:string;
     password:string;
 }
 const prisma = new PrismaClient()
@@ -12,7 +12,7 @@ export async function POST(req:NextRequest){
     const user:Props = await prisma.user.create({
         data:{
             email:body.email,
-            username:body.username,
+            name:body.name,
             password:body.password
         }
     })
