@@ -14,29 +14,37 @@ const InputBox = ({ dayNumber }: Props) => {
   const [isDataSaved, setIsDataSaved] = useState(false);
   const [isDataChecked, setIsDataChecked] = useState(false);
   const emailData = useRecoilValue(userState)
-  console.log(emailData)
+  console.log(emailData.email)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/users/2`, {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        });
-        if (response.ok) {
-          const data = await response.json();
-          const sortedData = data.sort(
-            (a: { dayNumber: number }, b: { dayNumber: number }) =>
-              a.dayNumber - b.dayNumber
-          );
-          const matchingItem = sortedData.find(
-            (item: { dayNumber: number }) => item.dayNumber === dayNumber
-          );
-          setContent(matchingItem?.content);
-          setIsDataChecked(matchingItem?.done);
-          setIsDataSaved(!!matchingItem);
-        } else {
-          console.error("Failed to fetch data");
+        if (emailData && emailData.email) {
+          const userResponse = await fetch(`/api/users?email=${emailData.email}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json"},
+          });
+          if(userResponse){
+            const response = await fetch(`/api/users/2`, {
+              method: "GET",
+              headers: { "Content-Type": "application/json" },
+            });
+            if (response.ok) {
+              const data = await response.json();
+              const sortedData = data.sort(
+                (a: { dayNumber: number }, b: { dayNumber: number }) =>
+                  a.dayNumber - b.dayNumber
+              );
+              const matchingItem = sortedData.find(
+                (item: { dayNumber: number }) => item.dayNumber === dayNumber
+              );
+              setContent(matchingItem?.content);
+              setIsDataChecked(matchingItem?.done);
+              setIsDataSaved(!!matchingItem);
+            } else {
+              console.error("Failed to fetch data");
+            }
+          }
         }
       } catch (error) {
         console.error("Error fetching data:", error);

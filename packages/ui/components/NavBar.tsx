@@ -8,7 +8,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 function AuthButton() {
   const { data: session } = useSession();
   const user = useSetRecoilState(userState)
-  user({email:session?.user?.email,name:session?.user?.name})
+  user({email:session?.user?.email,name:session?.user?.name,image:session?.user?.image,userId:null})
   if (session) {
     return (
       <>
