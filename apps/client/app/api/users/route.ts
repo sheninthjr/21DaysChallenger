@@ -5,11 +5,9 @@ interface Props {
     id: any;
     email:string;
     name:string;
-    password:string;
+    image:string;
 }
-interface GetProps{
-    email:string;
-}
+
 const prisma = new PrismaClient()
 export async function POST(req:NextRequest){
     const body:Props = await req.json();
@@ -17,24 +15,10 @@ export async function POST(req:NextRequest){
         data:{
             email:body.email,
             name:body.name,
-            password:body.password
+            image:body.image
         }
     })
     const userId = user.id;
     return NextResponse.json({ id: userId },{status:200})
 }
 
-export async function GET(req:NextRequest){
-    const body: { email: string } = await req.json();
-    const user = await prisma.user.findUnique({
-      where: {
-        email: body.email,
-      },
-      select: {
-        id: true,
-      },
-    });
-    console.log(user)
-    const userId = user?.id;
-    return NextResponse.json({ id: userId },{status:200})
-}
