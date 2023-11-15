@@ -7,7 +7,7 @@ app.use(express.json());
 const prisma = new PrismaClient();
 const port = 3002;
 
-app.get("/get/:email", async (req, res) => {
+app.get("/api/users/:email", async (req, res) => {
     const email = req.params.email;
     const task = await prisma.user.findUnique({
         where:{
@@ -20,6 +20,7 @@ app.get("/get/:email", async (req, res) => {
     res.json({task})
 
 })
+
 app.listen(port,()=>{
     console.log(`The server is running on port ${port}`)
 });
