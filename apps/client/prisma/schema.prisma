@@ -11,16 +11,17 @@ datasource db {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  email    String @unique
-  name String @unique
+  id    Int    @id @default(autoincrement())
+  email String @unique
+  name  String
   image String
-  task     Task[]
+  task  Task[]
 }
 
 model Task {
-  dayNumber Int     @id
-  content   String?  
+  id Int @id
+  dayNumber Int
+  content   String?
   done      Boolean @default(false)
   user      User    @relation(fields: [userId], references: [id])
   userId    Int

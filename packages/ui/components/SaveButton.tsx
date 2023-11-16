@@ -1,4 +1,6 @@
 "use client";
+import { useRecoilValue } from "recoil";
+import { userState } from "../store/atoms/userState";
 
 interface SaveButtonProps {
   content: string;
@@ -15,10 +17,23 @@ const SaveButton = ({
   isDataChecked,
   onButtonClick,
 }: SaveButtonProps) => {
+  const emailData = useRecoilValue(userState);
   const handleClick = async () => {
+    const useid = await fetch(
+      `http://localhost:3002/api/users/${emailData.email}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await useid.json();
+    const newUserId = data.task.id;
+    console.log(newUserId);
     const method = isDataSaved ? "PUT" : "POST";
     try {
-      const response = await fetch(`/api/users/2`, {
+      const response = await fetch(`/api/users/${newUserId}`, {
         method: method,
         headers: {
           "Content-Type": "application/json",

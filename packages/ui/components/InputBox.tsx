@@ -1,8 +1,9 @@
 "use client";
-import { useRecoilValue } from "recoil";
-import { userState } from '../../../apps/client/app/recoilContextProvider'
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { userState } from "../store/atoms/userState";
 import { useEffect, useState } from "react";
 import SaveButton from "./SaveButton";
+import { userId } from "../store/atoms/userId";
 
 interface Props {
   dayNumber: number;
@@ -13,19 +14,27 @@ const InputBox = ({ dayNumber }: Props) => {
   const [isEditing, setIsEditing] = useState(false);
   const [isDataSaved, setIsDataSaved] = useState(false);
   const [isDataChecked, setIsDataChecked] = useState(false);
-  const emailData = useRecoilValue(userState)
-  console.log(emailData.email)
-
+  const emailData = useRecoilValue(userState);
+  const setUserId = useRecoilValue(userId);
+  console.log(setUserId.userId);
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (emailData && emailData.email) {
-          const userResponse = await fetch(`/api/users?email=${emailData.email}`, {
-            method: "GET",
-            headers: { "Content-Type": "application/json"},
-          });
-          if(userResponse){
-            const response = await fetch(`/api/users/2`, {
+          const useid = await fetch(
+            `http://localhost:3002/api/users/${emailData.email}`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          const data = await useid.json();
+          const newUserId = data.task.id;
+          console.log(newUserId);
+          if (emailData.email) {
+            const response = await fetch(`/api/users/${newUserId}`, {
               method: "GET",
               headers: { "Content-Type": "application/json" },
             });
@@ -62,7 +71,18 @@ const InputBox = ({ dayNumber }: Props) => {
   };
   const handleCheckboxChange = async () => {
     try {
-      const response = await fetch(`/api/users/2`, {
+      const useid = await fetch(
+        `http://localhost:3002/api/users/${emailData.email}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await useid.json();
+      const newUserId = data.task.id;
+      const response = await fetch(`/api/users/${newUserId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -20,7 +20,7 @@ app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 const prisma = new client_1.PrismaClient();
 const port = 3002;
-app.get("/get/:email", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.get("/api/users/:email", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const email = req.params.email;
     const task = yield prisma.user.findUnique({
         where: {
