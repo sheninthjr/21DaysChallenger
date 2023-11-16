@@ -10,7 +10,7 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "Task" (
-    "id" INTEGER NOT NULL,
+    "id" SERIAL NOT NULL,
     "dayNumber" INTEGER NOT NULL,
     "content" TEXT,
     "done" BOOLEAN NOT NULL DEFAULT false,
