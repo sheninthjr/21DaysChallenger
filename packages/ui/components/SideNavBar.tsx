@@ -3,7 +3,7 @@ import Link from "next/link";
 const SideNavBar = () => {
   return (
     <>
-      <div className=" flex w-1/6 h-[calc(100vh-2rem)] bg-gray-100 fixed bottom-0">
+      <div className="hidden sm:flex sm:w-1/3 md:w-1/6 h-[calc(100vh-2rem)] bg-gray-100 fixed bottom-0">
         <div className="flex flex-col justify-start items-center ml-20 space-y-20 pt-20 text-black text-lg">
           <div className="flex justify-center items-start space-x-2 ">
             <svg

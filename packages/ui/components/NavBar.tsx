@@ -40,7 +40,7 @@ function AuthButton() {
   if (session) {
     return (
       <>
-        <div className="flex justify-between bg-gray-800 p-4 fixed top-0 w-full z-10">
+        <div className="flex justify-between md:justify-between bg-gray-800 p-4 fixed top-0 w-full z-10">
           <Link className="text-white text-2xl font-serif font-size" href="/">
             Jr
           </Link>

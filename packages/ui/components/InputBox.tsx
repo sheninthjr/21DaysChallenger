@@ -109,7 +109,7 @@ const InputBox = ({ dayNumber }: Props) => {
         className="flex justify-start items-center text-black"
         style={{ paddingTop: dayNumber === 1 ? "100px" : "0" }}
       >
-        <div className="w-11/12 pl-96 pr-5">
+        <div className="w-full md:w-11/12 lg:pl-96 lg:pr-5">
           <div className="flex flex-col justify-between border-2 border-gray-400 p-4 m-4">
             <div className="space-y-4 ">
               <div className="flex justify-center items-center">
@@ -132,7 +132,7 @@ const InputBox = ({ dayNumber }: Props) => {
                       />
                     </>
                   ) : (
-                    <div className="flex items-center w-full space-x-9">
+                    <div className="flex flex-row w-full space-x-2 md:flex-row md:space-x-9 md:items-center">
                       <div
                         className={`flex items-center bg-white rounded-lg h-10 w-5/6 p-3 cursor-pointer${
                           isDataChecked ? " line-through text-gray-400" : ""
@@ -141,7 +141,7 @@ const InputBox = ({ dayNumber }: Props) => {
                         {content || `Day ${dayNumber}`}
                       </div>
                       <button
-                        className="text-blue-600 pl-32"
+                        className="text-blue-600 w-full pl-32 md:w-auto mb-2 md:mb-0"
                         onClick={handleEditClick}
                       >
                         EDIT
