@@ -11,7 +11,12 @@ Run the following command:
 ```sh
 npx create-turbo@latest
 ```
+# Before running the frontend run 
 
+```
+yarn prisma migrate dev
+yarn prisma generate
+```
 
 ### Build
 
@@ -30,6 +35,3 @@ To develop all apps and packages, run the following command:
 cd my-turborepo
 yarn dev
 ```
-
-
-
