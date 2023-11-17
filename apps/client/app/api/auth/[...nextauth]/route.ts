@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { Provider } from "next-auth/providers/index";
 
 export const authOptions = {
   providers: [
@@ -13,7 +14,7 @@ export const authOptions = {
         clientId: process.env.NEXT_GITHUB_CLIENT_ID ?? "",
         clientSecret: process.env.NEXT_GITHUB_CLIENT_SECRET ?? ""
     })
-  ],
+  ] as Provider[],
 };
 
 export const handler = NextAuth(authOptions);
