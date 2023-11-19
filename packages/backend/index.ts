@@ -7,6 +7,7 @@ app.use(express.json());
 const prisma = new PrismaClient();
 const port = 3002;
 
+
 app.get("/api/users/:email", async (req, res) => {
     const email = req.params.email;
     const task = await prisma.user.findUnique({

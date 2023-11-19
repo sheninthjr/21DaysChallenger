@@ -5,15 +5,18 @@ import { userState } from "../store/atoms/userState";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { userId } from "../store/atoms/userId";
 
+
 function AuthButton() {
   const { data: session } = useSession();
   const setUser = useSetRecoilState(userState);
-  const setUserId = useSetRecoilState(userId);
-  setUser({
-    email: session?.user?.email,
-    name: session?.user?.name,
-    image: session?.user?.image,
-  });
+  const newUserState = {
+    email: session?.user?.email ?? null,
+    name: session?.user?.name ?? null,
+    image: session?.user?.image ?? null,
+  };
+  //@ts-ignore
+  setUser(newUserState)
+  
   const res = async () => {
     const postData = await fetch(`/api/users`, {
       method: "POST",
