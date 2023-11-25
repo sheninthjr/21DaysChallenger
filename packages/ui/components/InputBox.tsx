@@ -4,6 +4,7 @@ import { userState } from "../store/atoms/userState";
 import { useEffect, useState } from "react";
 import SaveButton from "./SaveButton";
 import { userId } from "../store/atoms/userId";
+import { BASE_URL } from "./config";
 
 interface Props {
   dayNumber: number;
@@ -22,7 +23,7 @@ const InputBox = ({ dayNumber }: Props) => {
       try {
         if (emailData && emailData.email) {
           const useid = await fetch(
-            `http://localhost:3002/api/users/${emailData.email}`,
+            `${BASE_URL}/api/users/${emailData.email}`,
             {
               method: "GET",
               headers: {
@@ -72,7 +73,7 @@ const InputBox = ({ dayNumber }: Props) => {
   const handleCheckboxChange = async () => {
     try {
       const useid = await fetch(
-        `http://localhost:3002/api/users/${emailData.email}`,
+        `${BASE_URL}/api/users/${emailData.email}`,
         {
           method: "GET",
           headers: {

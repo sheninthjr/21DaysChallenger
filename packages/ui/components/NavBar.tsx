@@ -4,6 +4,7 @@ import { useSetRecoilState } from "recoil";
 import { userState } from "../store/atoms/userState";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { userId } from "../store/atoms/userId";
+import { BASE_URL } from "./config";
 
 
 function AuthButton() {
@@ -30,7 +31,7 @@ function AuthButton() {
       }),
     });
     const useid = await fetch(
-      `http://localhost:3002/api/users/${session?.user?.email}`,
+      `${BASE_URL}/api/users/${session?.user?.email}`,
       {
         method: "GET",
         headers: {

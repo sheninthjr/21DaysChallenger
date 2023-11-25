@@ -1,6 +1,7 @@
 "use client";
 import { useRecoilValue } from "recoil";
 import { userState } from "../store/atoms/userState";
+import { BASE_URL } from "./config";
 
 interface SaveButtonProps {
   content: string;
@@ -20,7 +21,7 @@ const SaveButton = ({
   const emailData = useRecoilValue(userState);
   const handleClick = async () => {
     const useid = await fetch(
-      `http://localhost:3002/api/users/${emailData.email}`,
+      `${BASE_URL}/api/users/${emailData.email}`,
       {
         method: "GET",
         headers: {
